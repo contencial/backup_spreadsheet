@@ -1,5 +1,5 @@
-const SPREADSHEET_ID = ''
-const BKUP_FOLDER_ID = ''
+const SPREADSHEET_ID = '' // URL:https://docs.google.com/spreadsheets/d/***/edit#gid=0 (*** is the ID)
+const BKUP_FOLDER_ID = '' // URL:https://drive.google.com/drive/folders/*** (*** is the ID)
 
 function backupFile() {
 	let srcFile: File = DriveApp.getFileById(SPREADSHEET_ID);
