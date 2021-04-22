@@ -24,11 +24,14 @@ npm install
 clasp login
 clasp create --rootDir ./src
 
-# Googleドライブにあるバックアップ元スプレッドシートとバックアップ用フォルダのIDをmain.tsに記載する。
-vim src/main.ts　# 1,2行目の定数にIDを代入
-
 # TypeScriptのコードをPUSH（PUSH時に自動的にトランスパイルされ、GASに変換される。）
 clasp push
+
+# ブラウザで該当のGASプロジェクトを開き、IDをプロパティに設定するため、下記スクリプトをGASにて実行する
+  # スプレッドシートのIDは、「https://docs.google.com/spreadsheets/d/〇〇/edit#gid=0」の〇〇の部分
+  PropertiesService.getScriptProperties().setProperty("SPREADSHEET_ID","スプレッドシートのID");
+  # バックアップ用フォルダのIDは、「https://drive.google.com/drive/folders/〇〇」の〇〇の部分
+  PropertiesService.getScriptProperties().setProperty("BKUP_FOLDER_ID","バックアアップ用フォルダのID");
 ```
 ## トリガーを追加
 Google Apps Scriptのメニュー画面で「トリガー」を選択し、トリガーを登録。
