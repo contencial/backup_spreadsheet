@@ -6,12 +6,13 @@ function createZipFile() {
 	let bkupFolder: Folder = DriveApp.getFolderById(BKUP_FOLDER_ID);
 	let files: FileIterator = bkupFolder.getFiles();
 	let blobs: Array<Blob> = new Array();
-	let today: Date = new Date();
+	let now: Date = new Date();
+	let yesterday: Date = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);;
 	while (files.hasNext()) {
 		let file: File = files.next();
 		blobs.push(file.getBlob());
 	}
-	let zipFile: Blob = Utilities.zip(blobs, `【${Utilities.formatDate(new Date(), 'JST', 'yyyy-MM')}】${srcFile.getName()}`);
+	let zipFile: Blob = Utilities.zip(blobs, `【${Utilities.formatDate(yesterday, 'JST', 'yyyy-MM')}】${srcFile.getName()}`);
 	let oldFolder: Folder = DriveApp.getFolderById(OLD_FOLDER_ID);
 	oldFolder.createFile(zipFile);
 	files = bkupFolder.getFiles();
