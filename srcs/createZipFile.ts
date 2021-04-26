@@ -7,7 +7,7 @@ function createZipFile() {
 	let files: FileIterator = bkupFolder.getFiles();
 	let blobs: Array<Blob> = new Array();
 	let now: Date = new Date();
-	let yesterday: Date = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);;
+	let yesterday: Date = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
 	while (files.hasNext()) {
 		let file: File = files.next();
 		blobs.push(file.getBlob());
