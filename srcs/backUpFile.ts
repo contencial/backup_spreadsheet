@@ -1,4 +1,4 @@
-function backupFile() {
+function backUpFile() {
 	const SPREADSHEET_ID: string = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
 	const BKUP_FOLDER_ID: string = PropertiesService.getScriptProperties().getProperty('BKUP_FOLDER_ID');
 	const SRC_FILE: File = DriveApp.getFileById(SPREADSHEET_ID);
