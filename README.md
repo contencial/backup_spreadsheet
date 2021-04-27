@@ -22,7 +22,7 @@ npm install
 
 # GASプロジェクトの作成
 clasp login
-clasp create --rootDir ./src
+clasp create --rootDir ./srcs
 
 # TypeScriptのコードをPUSH（PUSH時に自動的にトランスパイルされ、GASに変換される。）
 clasp push
@@ -32,14 +32,17 @@ clasp push
   PropertiesService.getScriptProperties().setProperty("SPREADSHEET_ID","スプレッドシートのID");
   # バックアップ用フォルダのIDは、「https://drive.google.com/drive/folders/〇〇」の〇〇の部分
   PropertiesService.getScriptProperties().setProperty("BKUP_FOLDER_ID","バックアアップ用フォルダのID");
+  # 週次でバックアップファイルをzip形式に固めてoldフォルダに格納するため、zip用フォルダのIDも設定する。
+    PropertiesService.getScriptProperties().setProperty("OLD_FOLDER_ID","ZIP用フォルダのID");
 ```
 ## トリガーを追加
 Google Apps Scriptのメニュー画面で「トリガー」を選択し、トリガーを登録。
-実行する関数には「main」を選択し、好みのタイミングを設定する。（日次で起動したいなら「日付ベースのタイマー」を選択する。）
+バックアップ用に実行する関数には「backUpFile」を選択し、好みのタイミングを設定する。（日次で起動したいなら「日付ベースのタイマー」を選択する。）
+改廃用に実行する関数には「createZipFile」を選択し、週次で設定する。（例としては毎週月曜日。）
 以上で自動バックアップ処理の登録が完了です。
 ## 仕様について
 1. スプレッドシートを日次でバックアップ用ディレクトリにコピーする。
 2. 命名規則は「【yyyy-MM-dd】'スプレッドシート名'」。
-3. 改廃期間は30日で設定。
+3. 改廃期間は7日で設定。
 
 [GASの公式ドキュメント](https://developers.google.com/apps-script/reference)を確認したところ、バックアップ用スプレッドシートを作ってデータを洗い替えたり、ファイルの蓄積ではなくシートの蓄積にしたりなど異なる運用方法にも対応できそうです。
