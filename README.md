@@ -33,7 +33,7 @@ clasp push
   # バックアップ用フォルダのIDは、「https://drive.google.com/drive/folders/〇〇」の〇〇の部分
   PropertiesService.getScriptProperties().setProperty("BKUP_FOLDER_ID","バックアアップ用フォルダのID");
   # 週次でバックアップファイルをzip形式に固めてoldフォルダに格納するため、zip用フォルダのIDも設定する。
-    PropertiesService.getScriptProperties().setProperty("OLD_FOLDER_ID","ZIP用フォルダのID");
+  PropertiesService.getScriptProperties().setProperty("OLD_FOLDER_ID","ZIP用フォルダのID");
 ```
 ## トリガーを追加
 Google Apps Scriptのメニュー画面で「トリガー」を選択し、トリガーを登録。
